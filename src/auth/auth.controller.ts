@@ -21,6 +21,7 @@ export class AuthController {
         type: CreateUserDto
     })
     async login(@Request() req) {
+        console.log(req.user)
         return this.authService.login(req.user as UserEntity);
     }
 
