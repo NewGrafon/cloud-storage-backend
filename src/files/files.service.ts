@@ -1,18 +1,15 @@
-import {Injectable} from '@nestjs/common';
-import {InjectRepository} from "@nestjs/typeorm";
-import {FileEntity} from "./entities/file.entity";
-import {Repository} from "typeorm";
-import {FileTypes} from "../enums/file-types.enum";
+import { Injectable } from '@nestjs/common';
+import { InjectRepository } from '@nestjs/typeorm';
+import { FileEntity } from './entities/file.entity';
+import { Repository } from 'typeorm';
+import { FileTypes } from '../enums/file-types.enum';
 
 @Injectable()
 export class FilesService {
-
   constructor(
-      @InjectRepository(FileEntity)
-      private repository: Repository<FileEntity>
-  ) {
-
-  }
+    @InjectRepository(FileEntity)
+    private repository: Repository<FileEntity>,
+  ) {}
 
   async findAll(userId: number, fileType: FileTypes) {
     const qb = this.repository.createQueryBuilder('file');
@@ -36,7 +33,7 @@ export class FilesService {
       originalName: file.originalname,
       size: file.size,
       mimetype: file.mimetype,
-      user: { id: userId }
+      user: { id: userId },
     });
   }
 

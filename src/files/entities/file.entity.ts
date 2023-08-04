@@ -1,27 +1,32 @@
-import {Column, DeleteDateColumn, Entity, ManyToOne, PrimaryGeneratedColumn} from "typeorm";
-import {UserEntity} from "../../users/entities/user.entity";
+import {
+  Column,
+  DeleteDateColumn,
+  Entity,
+  ManyToOne,
+  PrimaryGeneratedColumn,
+} from 'typeorm';
+import { UserEntity } from '../../users/entities/user.entity';
 
 @Entity('files')
 export class FileEntity {
+  @PrimaryGeneratedColumn()
+  id: number;
 
-    @PrimaryGeneratedColumn()
-    id: number;
+  @Column()
+  filename: string;
 
-    @Column()
-    filename: string;
+  @Column()
+  originalName: string;
 
-    @Column()
-    originalName: string;
+  @Column()
+  size: number;
 
-    @Column()
-    size: number;
+  @Column()
+  mimetype: string;
 
-    @Column()
-    mimetype: string;
+  @ManyToOne(() => UserEntity, (user) => user.files)
+  user: UserEntity;
 
-    @ManyToOne(() => UserEntity, user => user.files)
-    user: UserEntity;
-
-    @DeleteDateColumn()
-    deletedAt?: Date;
+  @DeleteDateColumn()
+  deletedAt?: Date;
 }

@@ -1,5 +1,5 @@
 import { SetMetadata } from '@nestjs/common';
-import {Role} from "../enums/role.enum";
+import { Role } from '../enums/role.enum';
 
 export const IS_PUBLIC_KEY = 'isPublic';
 export const AllowAnonymous = () => SetMetadata(IS_PUBLIC_KEY, true);
